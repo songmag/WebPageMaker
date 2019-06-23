@@ -1,0 +1,47 @@
+package Servlet;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import JspPack.JspPage;
+import VO.UserVO;
+
+@WebServlet("/BridgeServlet")
+public class BridgeServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public BridgeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+		return;
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+		return;
+	}
+	protected void doProcess(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		req.setCharacterEncoding("utf-8");
+		String page = (String)req.getParameter("requestPage");
+		RequestDispatcher dispatcher = req.getRequestDispatcher(JspPage.equal(page));
+		dispatcher.include(req, res);
+		if(JspPage.equal(page).equals("SignupServlet"))
+			dispatcher = req.getRequestDispatcher("/Jsp/main.jsp");
+		else	
+			dispatcher = req.getRequestDispatcher("/IndexServlet");
+		UserVO user = (UserVO) req.getSession().getAttribute("user");
+		System.out.println(user.getMenu());
+		dispatcher.forward(req, res);
+		return;
+	}
+	
+}

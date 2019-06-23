@@ -1,0 +1,47 @@
+
+5월 30, 2019 22:50:55.49 NEW SESSION
+5월 30, 2019 22:50:55.49 [9420:7240:0530/225055.486:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+5월 30, 2019 22:50:55.74 [9420:468:0530/225055.742:ERROR:browser_process_sub_thread.cc(217)] Waited 177 ms for network service
+5월 30, 2019 22:50:56.06 
+5월 30, 2019 22:50:56.06 KLIB_SelfTest return : KLR_OK
+5월 30, 2019 22:56:42.76 [5920:5444:0530/225642.766:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+5월 30, 2019 22:56:43.13 [5920:8604:0530/225643.136:ERROR:browser_process_sub_thread.cc(217)] Waited 234 ms for network service
+5월 30, 2019 22:56:43.39 
+5월 30, 2019 22:56:43.40 KLIB_SelfTest return : KLR_OK
+5월 30, 2019 22:59:27.92 [9432:3996:0530/225927.925:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+5월 30, 2019 22:59:28.04 [9432:5692:0530/225928.040:ERROR:browser_process_sub_thread.cc(217)] Waited 44 ms for network service
+5월 30, 2019 22:59:28.15 
+5월 30, 2019 22:59:28.15 KLIB_SelfTest return : KLR_OK
+5월 30, 2019 23:14:09.16 [5972:6620:0530/231409.159:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+5월 30, 2019 23:14:09.40 [5972:12632:0530/231409.408:ERROR:browser_process_sub_thread.cc(217)] Waited 66 ms for network service
+5월 30, 2019 23:14:09.95 
+5월 30, 2019 23:14:09.96 KLIB_SelfTest return : KLR_OK
+
+6월 04, 2019 18:42:40.44 NEW SESSION
+6월 04, 2019 18:42:40.44 [5816:2740:0604/184240.436:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+6월 04, 2019 18:42:40.58 [5816:1552:0604/184240.588:ERROR:browser_process_sub_thread.cc(217)] Waited 45 ms for network service
+6월 04, 2019 18:42:40.64 
+6월 04, 2019 18:42:40.65 KLIB_SelfTest return : KLR_OK
+6월 04, 2019 18:43:29.35 [4808:1336:0604/184329.359:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+6월 04, 2019 18:43:29.45 [4808:5748:0604/184329.455:ERROR:browser_process_sub_thread.cc(217)] Waited 30 ms for network service
+6월 04, 2019 18:43:29.51 
+6월 04, 2019 18:43:29.52 KLIB_SelfTest return : KLR_OK
+6월 04, 2019 18:50:22.04 [8668:12224:0604/185022.042:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+6월 04, 2019 18:50:22.16 [8668:2584:0604/185022.167:ERROR:browser_process_sub_thread.cc(217)] Waited 26 ms for network service
+6월 04, 2019 18:50:22.27 
+6월 04, 2019 18:50:22.28 KLIB_SelfTest return : KLR_OK
+6월 04, 2019 19:59:39.34 [9152:5980:0604/195939.343:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+6월 04, 2019 19:59:39.71 [9152:2604:0604/195939.625:ERROR:browser_process_sub_thread.cc(217)] Waited 107 ms for network service
+6월 04, 2019 19:59:39.85 
+6월 04, 2019 19:59:39.85 KLIB_SelfTest return : KLR_OK
+6월 04, 2019 20:58:21.24 [7840:3904:0604/205821.249:ERROR:connection_factory_impl.cc(413)] Failed to connect to MCS endpoint with error -106
+
+6월 05, 2019 07:16:00.36 NEW SESSION
+6월 05, 2019 07:16:00.36 [11300:4012:0605/071600.053:ERROR:textfield.cc(1773)] NOT IMPLEMENTED
+6월 05, 2019 07:23:24.14 [11300:4012:0605/072324.140:ERROR:http_bridge.cc(127)] NOT IMPLEMENTED
+6월 05, 2019 07:23:24.25 [11300:3032:0605/072324.258:ERROR:service_manager_context.cc(251)] Attempting to run unsupported native service: C:\Program Files (x86)\Google\Chrome\Application\74.0.3729.169\content_browser.service.exe
+6월 05, 2019 07:23:24.26 [11300:3032:0605/072324.261:ERROR:service_manager_context.cc(251)] Attempting to run unsupported native service: C:\Program Files (x86)\Google\Chrome\Application\74.0.3729.169\content_browser.service.exe
+6월 05, 2019 07:23:24.26 [11300:3032:0605/072324.262:ERROR:service_manager_context.cc(251)] Attempting to run unsupported native service: C:\Program Files (x86)\Google\Chrome\Application\74.0.3729.169\content_browser.service.exe
+6월 05, 2019 07:23:24.39 [11300:3032:0605/072324.393:ERROR:browser_process_sub_thread.cc(217)] Waited 94 ms for network service
+6월 05, 2019 07:23:24.81 
+6월 05, 2019 07:23:24.82 KLIB_SelfTest return : KLR_OK

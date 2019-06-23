@@ -1,0 +1,14 @@
+package JspPack;
+
+public class JspPage {
+		public static final String[] pages = { "LoginServlet", "InfoChangeServlet", "SignupServlet", "PostListServlet", "PostReadServlet","PostInServlet"};
+		
+		public static String equal(String name) {
+			for(String page : pages)
+			{
+				if(page.equals(name))
+					return page;
+			}
+			return null;
+		}
+}

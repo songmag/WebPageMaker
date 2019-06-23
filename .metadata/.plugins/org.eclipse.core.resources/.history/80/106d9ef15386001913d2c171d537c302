@@ -1,0 +1,6 @@
+<%@page import="java.util.Enumeration"%>
+<%@page import="VO.PostLink" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.Hashtable" %>
+<%@page import="VO.UserVO" %>
+postList Setting

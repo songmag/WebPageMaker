@@ -1,0 +1,17 @@
+package DAO;
+
+import VO.MenuVO;
+
+public class Selecter {
+	public static MenuVO selected(MenuVO menu,String str)
+	{
+		MenuVO rs;
+		rs = new MenuVO();
+		if(menu.get(str) != null)
+		{
+			rs.getMenuList().put(str, null);
+			return rs;
+		}
+		return menu;
+	}
+}

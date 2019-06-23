@@ -1,0 +1,21 @@
+
+form {
+	text-align : center;
+	margin-top:30px;
+}
+td{
+	padding :15px;
+}
+textarea, table input{
+	border-style : dotted;
+	border-image:none;
+}
+table input{
+	width : inherit;
+	height : inherit;
+}
+input:not(table input)
+{
+	height :20px;
+	width :15px;
+}

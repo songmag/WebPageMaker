@@ -1,0 +1,140 @@
+body{
+	size :10px;
+}
+.set{
+	position :relative;
+	width : 80%;
+}
+.auto-margin{
+	margin : auto;
+}
+.abs{
+	position :absolute
+}
+.header{
+	top : 0;
+	left : 200px;
+}
+.content{
+	left : 200px;
+	top : 50px;
+	margin :0;
+}
+.submenu{
+	left : 0px;
+}
+.navi{
+	left : 0px;
+	top : 50px;
+}
+.adcontent{	
+	top : 50px;
+	right : 50px;
+}
+#topImage{
+	background-repeat : no-repeat;
+	background-image : url(/Image/banner2.png);
+	background-size : 100% 100%;
+	width:100%;
+	padding : 10% 50px;
+}
+#postin{
+	display:none;
+}
+@media only screen and (max-width : 300px)
+{
+	#menutoolbar
+	{
+		display:block;
+	}
+	#adcontent{	
+		display :none;
+	}
+	#maincontent{
+		display : block;
+		text-align : center;
+	}	
+	#submenutoolbar{
+		display : none;
+	}
+	#logindiv
+	{
+		display:none;	
+	}
+	#contentset{
+		height : auto;
+	}	
+}
+@media only screen and (min-width: 301px) and (max-width : 1200px)
+{
+	#menutoolbar
+	{
+	display:block;
+	}
+	#adcontent{	
+		display :none;
+	}
+	#maincontent{
+		display : block;
+		text-align : center;
+	}	
+	#submenutoolbar{
+	display : none;
+	position : fixed;
+	top : 50px;
+	padding :0;
+	width : auto;
+	padding : 0px 5px;
+	}
+	#logindiv
+{
+	width : auto;
+	height : auto;
+	text-align : center;
+	display : inline-block;
+}
+#contentset{
+	height : auto;
+	}
+}
+
+
+@media only screen and (min-width : 1201px) {	
+#menutoolbar
+{
+	display:block;
+}
+#adcontent{
+	display :inline-block;
+	width:10%;
+}
+#maincontent{
+	display : inline-block;
+	text-align : center;
+}
+#submenutoolbar{
+	display : none;
+	position : fixed;
+	top : 50px;
+	padding :0;
+	width : auto;
+	padding : 0px 5px;
+}
+#subcontent{
+	display : inline-block;
+	width:50px;
+	height: 200px;
+	border-style : solid;
+	border-width : 1px;
+}
+#logindiv
+{
+	width : auto;
+	height : auto;
+	text-align : center;
+	display : inline-block;
+}
+#contentset{
+	height : auto;
+}
+}

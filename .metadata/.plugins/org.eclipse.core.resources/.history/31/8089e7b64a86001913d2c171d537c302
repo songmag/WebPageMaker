@@ -1,0 +1,39 @@
+package Servlet;
+
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import VO.VOIntf;
+
+@WebServlet("/BridgeServlet")
+public class BridgeServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public BridgeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+	}
+	protected void doProcess(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		String page = (String)req.getParameter("requestPage");
+		System.out.println(page);
+		//JspPage jsp = JspPage.valueOf(page);
+		//System.out.println(jsp.toString());
+		//RequestDispatcher dispatcher = req.getRequestDispatcher(jsp.toString());
+		//dispatcher.forward(req, res);
+	}
+	enum JspPage{IndexServlet,loginServlet,InfoChangeServlet,SignupServlet,PostListServlet,PostReadServlet,PostInServlet;}
+}

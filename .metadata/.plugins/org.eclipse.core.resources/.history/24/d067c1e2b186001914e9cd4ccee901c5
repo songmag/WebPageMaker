@@ -1,0 +1,225 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.LinkedList;
+
+import javax.naming.NamingException;
+
+import VO.MenuVO;
+import VO.PostLink;
+import VO.PostVO;
+import VO.UserVO;
+import VO.VOIntf;
+
+public class MenuDAO extends DBPool implements DAOIntf{
+
+	final protected String SELECTMENU= "select * from menu where menu_num in (select menu_num from connect_login where id_num = ?)";
+	final protected String SELECTALLMENU ="select menu_str from menu";
+	
+	final protected String INSERTMENU = "insert into menu(menu_str) values(?)";
+	final protected String INSERTCON ="insert into connect_login values(?,(select menu_num where menu_str = ?))";
+	
+	final protected String DELETEMENU = "delete from menu where menu_str = ?";
+	final protected String UPDATEMENU = "update set menu_str = ? where menu_str = ?";
+	
+	private Connection con = null;
+	private PreparedStatement pre = null;
+	private ResultSet rs = null;
+	
+	public MenuDAO() {
+	}
+	public MenuVO selectMenu(MenuVO menu)
+	{
+		DAOIntf dao = DAOFactory.getDAO(new PostLink());
+		return (MenuVO) dao.select(menu);
+	}
+	public MenuVO selectMenu(UserVO user)
+	{	
+		MenuVO menu = new MenuVO();
+		try {
+			con = getConnection();
+			pre = con.prepareStatement(SELECTMENU);
+			pre.setInt(1,user.getIdNum());
+			rs = pre.executeQuery();
+			while(rs.next())
+			{
+				menu.put(rs.getString("menu_str"),new PostLink());
+			}
+		}catch(SQLException | NamingException e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try {
+				
+
+				if(rs != null)
+					rs.close();
+				if(pre != null)
+					pre.close();
+				if(con != null)
+				{
+					con.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		user.setMenu(menu);
+		return menu;
+	}//2가지 방법 가능
+	
+	public MenuVO selectMenu()
+	{	
+		MenuVO menu = new MenuVO();
+		try {
+			con = getConnection();
+			pre = con.prepareStatement(SELECTALLMENU);
+			rs = pre.executeQuery();
+			while(rs.next())
+			{
+				menu.put(rs.getString("menu_str"),new PostLink());
+			}
+		}catch(SQLException | NamingException e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try {
+				if(rs != null)
+					rs.close();
+				if(pre != null)
+					pre.close();
+				if(con != null)
+					con.close();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return menu;
+	}//2가지 방법 가능
+	public void insertMenu(UserVO user)
+	{
+		PreparedStatement menu_pre=null,con_pre=null;
+		Hashtable<String,PostLink> menu = user.getMenu();
+		Enumeration<String> keys=  menu.keys();
+		try {
+			con = getConnection();
+		} catch (NamingException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		while(keys.hasMoreElements())
+		{
+			String key = keys.nextElement();
+			try {
+				menu_pre = con.prepareStatement(INSERTMENU);
+				menu_pre.setString(1,key);
+				menu_pre.executeQuery();
+				con.commit();
+				con_pre = con.prepareStatement(INSERTCON);
+				con_pre.setInt(1,user.getIdNum());
+				con_pre.setString(2, key);
+				con_pre.executeQuery();
+				con.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			if(menu_pre != null)
+				menu_pre.close();
+			if(con_pre != null)
+				con_pre.close();				
+			if(con != null)
+				con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+}
+	public void deleteMenu(MenuVO menu)
+	{
+		try {
+			con = getConnection();
+		} catch (NamingException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			pre = con.prepareStatement(DELETEMENU);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}//* 차후 설정
+	public void updateMenu(MenuVO menu,String name1,String name2)
+	{
+		try {
+			con = getConnection();
+		} catch (NamingException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			pre = con.prepareStatement(UPDATEMENU);
+			pre.setString(1,name1);
+			pre.setString(2,name2);
+			pre.executeQuery();
+			con.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(pre != null)
+				pre.close();
+				if(con != null)
+					con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	@Override
+	public VOIntf select(VOIntf vo) {
+		if(vo instanceof UserVO)
+		{
+			return selectMenu((UserVO)vo);
+		}
+		else if(vo instanceof MenuVO)
+		{
+			return selectMenu((MenuVO)vo);
+		}
+		return selectMenu();
+	}
+	@Override
+	public void insert(VOIntf vo) {
+		insertMenu((UserVO)vo);
+	}
+
+	@Override
+	public void delete(VOIntf vo) {
+		/*
+		 * TODO set MenuDelete VO system error
+		 */
+	}
+
+	@Override
+	public void update(VOIntf vo, String name1, String name2) {
+		updateMenu((MenuVO)vo, name1, name2);
+	}
+}

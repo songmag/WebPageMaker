@@ -1,0 +1,57 @@
+package VO;
+
+import java.util.Hashtable;
+
+public class MenuVO extends Hashtable<String,PostLink> implements VOIntf{
+	private String user_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1365145005425837308L;//이것을 사용하는 이유는?
+	public MenuVO()
+	{
+		super();
+	}
+	public MenuVO(String user_id)
+	{
+		super();
+		this.user_id = user_id;
+	}
+	public MenuVO(String user_id,String menu_str)
+	{
+		super();
+		this.user_id = user_id;
+		put(menu_str, new PostLink());
+	}
+	public String getUserId()
+	{
+		return this.user_id;
+	}
+	public MenuVO setUserId(String user_id)
+	{
+		this.user_id = user_id;
+		return this;
+	}
+	public MenuVO(Hashtable<String,PostLink> table)
+	{
+		super();
+		putAll(table);
+	}
+	@Override
+	public VOIntf get() {
+		return this;
+	}
+	public PostLink get(String menu_str)
+	{
+		return get(menu_str);
+	}
+	@Override
+	public void set(VOIntf elem) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+}//menu의 column은 1개인데 , id당 갖고있는 개수가 여러개임으로.

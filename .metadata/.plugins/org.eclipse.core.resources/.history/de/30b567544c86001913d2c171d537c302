@@ -1,0 +1,48 @@
+package Servlet;
+
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import VO.VOIntf;
+
+@WebServlet("/BridgeServlet")
+public class BridgeServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public BridgeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+	}
+	protected void doProcess(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		String page = (String)req.getParameter("requestPage");
+		System.out.println(JspPage.equal(page));
+		RequestDispatcher dispatcher = req.getRequestDispatcher(JspPage.equal(page));
+		dispatcher.forward(req, res);
+	}
+	static class JspPage{
+		public static final String[] page = {"IndexServlet", "loginServlet", "InfoChangeServlet", "SignupServlet", "PostListServlet", "PostReadServlet","PostInServlet"};
+		
+		public static String equal(String name) {
+			for(String page_str : page)
+			{
+				if(page_str.equals(name))
+					return page_str;
+			}
+			return null;
+		}
+	}
+}

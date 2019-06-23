@@ -1,0 +1,75 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Enumeration;
+
+import javax.naming.NamingException;
+
+import VO.MenuVO;
+import VO.PostLink;
+import VO.PostVO;
+import VO.VOIntf;
+public class PostDAO extends DBPool implements DAOIntf{
+	private final String POSTSELECT = "select * from post where menu_num in (select menu_num from menu wehre menu_str =?)"; 
+	private Connection con;
+	private PreparedStatement pre;
+	private ResultSet rs;
+	
+	
+	public MenuVO selectPost(MenuVO vo) throws NamingException, SQLException
+	{
+		Enumeration<String> keys = vo.keys();
+		String key = null;
+		con = getConnection();
+		pre = con.prepareStatement(POSTSELECT);
+		while(keys.hasMoreElements())
+		{
+			key = keys.nextElement();
+			PostLink list = new PostLink();
+			pre.setString(1, key);
+			rs = pre.executeQuery();
+			list.setMenu_str(key);
+			list.setUser_id(vo.getUserId());
+			while(rs.next())
+			{
+				list.add(new PostVO()
+					.setPermission(rs.getInt("permission"))
+					.setPostName(rs.getString("post_name"))
+					.setWhen(rs.getTimestamp("post_when")));
+			}
+			vo.put(key, list);
+		}
+		return vo;
+	}
+	
+	@Override
+	public VOIntf select(VOIntf vo) {
+		try {
+			return selectPost((MenuVO)vo);
+		} catch (NamingException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public void insert(VOIntf vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(VOIntf vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(VOIntf vo, String column, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+}

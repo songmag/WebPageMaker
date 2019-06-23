@@ -1,0 +1,55 @@
+package Servlet;
+
+import java.io.IOException;
+import java.util.Enumeration;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DAO.DAOFactory;
+import DAO.DAOIntf;
+import VO.MenuVO;
+import VO.PostLink;
+import VO.UserVO;
+
+/**
+ * Servlet implementation class PostList
+ */
+@WebServlet("/PostListServlet")
+public class PostListServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    public PostListServlet() {
+        super();
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request,response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+	protected void doProcess(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+	{
+		UserVO user;
+		user = (UserVO) req.getSession().getAttribute("user");
+		MenuVO menu = user.getMenu();
+		Enumeration<String> keys = menu.keys();
+		String currentMenu = (String) req.getAttribute("CurrentMenu");
+		String key;
+		if(currentMenu == null)
+		{
+			key = keys.nextElement();		}
+		else
+		{
+			key = currentMenu;
+			DAOIntf dao = DAOFactory.getDAO(new PostLink());
+			menu.put(key,(PostLink) dao.select(new MenuVO(user.getId(),key)));
+		}
+		user.setMenu(menu);
+		req.getSession().setAttribute("user",user);
+		req.setAttribute("PostList",menu.get(key));
+		req.setAttribute("jsp","/Jsp/postlist.jsp");
+	}
+}

@@ -1,0 +1,20 @@
+<%@page import="java.util.Enumeration"%>
+<%@page import="VO.PostLink" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.Hashtable" %>
+<jsp:useBean id="user" scope="session" type="VO.UserVO"></jsp:useBean>
+<%! 
+	Hashtable<String,PostLink> rt;
+%>
+<%
+	if(user.getMenu() != null)
+	{
+		rt = user.getMenu();
+		request.setAttribute("rt", rt); 
+%>
+	<ul class ="list-inline">
+		<c:forEach var="item" items="${requestScope.rt}" >
+			<a href="TestServlet?jsp=postlist&menu_id=${item.key}"><li class ="list-inline-item"><button class="btn btn-primary">${item.value}</button></li></a>
+		</c:forEach>
+	</ul>
+<%}%>

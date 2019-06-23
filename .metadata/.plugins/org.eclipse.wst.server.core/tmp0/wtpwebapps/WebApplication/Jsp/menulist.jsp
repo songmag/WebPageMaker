@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="VO.PostLink" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.Hashtable" %>
+<jsp:useBean id="user" scope="session" type="VO.UserVO"></jsp:useBean>
+<%! 
+	Hashtable<String,PostLink> rt;
+%>
+<%
+	if(user.getMenu() != null)
+	{
+		rt = user.getMenu();
+		request.setAttribute("rt", rt); 
+%>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<ul class ="navbar-nav mr-auto">
+		<c:forEach var="item" items="${requestScope.rt}" >
+			<c:if test="${item.key eq requestScope.CurrentMenu}">
+				<li class ="nav-item active"><a class="nav-link" href="/WebApplication/BridgeServlet?requestPage=PostListServlet&CurrentMenu=${item.key}">${item.key}</a></li>
+			</c:if>
+			<c:if test="${item.key ne requestScope.CurrentMenu}">
+			<li class ="nav-item"><a class="nav-link" href="/WebApplication/BridgeServlet?requestPage=PostListServlet&CurrentMenu=${item.key}">${item.key}</a></li>
+			</c:if>
+		</c:forEach>
+	</ul>
+</nav>
+<%}%>
